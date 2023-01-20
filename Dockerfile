@@ -25,14 +25,10 @@ RUN ignite chain build
 FROM alpine:3.17
 
 # copy the binary from builder into rollmint image
-COPY --from=builder /go/bin/wordled /
+COPY --from=builder /go/bin/wordled /bin
+# RUN wordled tendermint unsafe-reset-all
+# RUN wordled init $VALIDATOR_NAME --chain-id $CHAIN_ID
+RUN echo $(ls bin | grep wordled) > output.txt
 
-# init chain
-ENV VALIDATOR_NAME=validator1
-ENV CHAIN_ID=wordle
+CMD cat output.txt
 
-RUN wordled tendermint unsafe-reset-all
-RUN wordled init $VALIDATOR_NAME --chain-id $CHAIN_ID
-
-
-EXPOSE 2121
