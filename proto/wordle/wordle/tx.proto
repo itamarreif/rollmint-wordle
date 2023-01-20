@@ -1,0 +1,34 @@
+syntax = "proto3";
+package wordle.wordle;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "wordle/x/wordle/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc SubmitWordle(MsgSubmitWordle) returns (MsgSubmitWordleResponse);
+  rpc SubmitGuess(MsgSubmitGuess) returns (MsgSubmitGuessResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgSubmitWordle {
+  string creator = 1;
+  string word = 2;
+}
+
+message MsgSubmitWordleResponse {
+}
+
+message MsgSubmitGuess {
+  string creator = 1;
+  string word = 2;
+}
+
+message MsgSubmitGuessResponse {
+  string title = 1;
+  string body = 2;
+}
+
+
+// this line is used by starport scaffolding # proto/tx/message

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package wordle.wordle;
+
+import "gogoproto/gogo.proto";
+import "wordle/wordle/params.proto";
+import "wordle/wordle/wordle.proto";
+import "wordle/wordle/guess.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "wordle/x/wordle/types";
+
+// GenesisState defines the wordle module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Wordle wordleList = 2 [(gogoproto.nullable) = false];
+  repeated Guess guessList = 3 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
