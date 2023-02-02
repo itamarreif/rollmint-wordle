@@ -24,11 +24,11 @@ RUN ignite chain build
 # ~~~ final image ~~~
 FROM alpine:3.17
 
+RUN apk add \
+    curl \
+    jq \
+    # Add glibc compatibility needed to run wordled on Alpine Linux
+    libc6-compat
+
 # copy the binary from builder into rollmint image
 COPY --from=builder /go/bin/wordled /bin
-# RUN wordled tendermint unsafe-reset-all
-# RUN wordled init $VALIDATOR_NAME --chain-id $CHAIN_ID
-RUN echo $(ls bin | grep wordled) > output.txt
-
-CMD cat output.txt
-
