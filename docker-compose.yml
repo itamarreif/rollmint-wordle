@@ -7,7 +7,7 @@ services:
       - ${KEY_PATH}/celestia-lc/:/root/${NODE_STORE}/keys:ro
       - ${PWD}/scripts/celestia/:/scripts:ro
     ports:
-      - 26659:26659
+      - 26657:26657
     env_file:
       - ${PWD}/.env.celestia-lc
     command: /bin/sh -c '/scripts/init.sh && /scripts/start.sh'
@@ -18,5 +18,6 @@ services:
       - ${PWD}/scripts/wordle/:/scripts/:ro
     env_file:
       - ${PWD}/.env.wordle
+    ports:
+      - 26559:26559
     command: /bin/sh -c '/scripts/init.sh && /scripts/genesis.sh && /scripts/start.sh'
-
