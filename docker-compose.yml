@@ -1,16 +1,18 @@
+name: rollmint-wordle
 version: '3.8'
 services:
   celestia-lc:
-    image: celestia-node:local
+    image: celestia-node
     volumes:
-      - ${KEY_PATH}/celestia-lc:/root/${CELESTIA_LC_NODE_STORE}/keys
-      - ${PWD}/scripts/celestia:/scripts
+      - ${KEY_PATH}/celestia-lc/:/root/${CELESTIA_LC_NODE_STORE}/keys:ro
+      - ${PWD}/scripts/celestia/:/scripts:ro
     ports:
       - 26659:26659
-    command: /bin/sh -c "/scripts/init.sh && /scripts/start.sh"
+    command: /bin/sh -c "echo "aa ${CELESTIA_LC_NODE_STORE}" && /scripts/init.sh && /scripts/start.sh"
   wordle:
     image: wordle-rollmint
     volumes:
-      - ${KEY_PATH}/wordle:/keys
-      - ${PWD}/scripts/wordle:/scripts/
-    command: /bin/sh -c "/scripts/init.sh && /scripts/genesis.sh && /scripts/run.sh"
+      - ${KEY_PATH}/wordle/:/keys:ro
+      - ${PWD}/scripts/wordle/:/scripts/:ro
+    command: /bin/sh -c "/scripts/init.sh && /scripts/genesis.sh && /scripts/start.sh"
+
