@@ -8,6 +8,7 @@ services:
       - ${PWD}/scripts/celestia/:/scripts:ro
     ports:
       - 26657:26657
+      - 26659:26659
     env_file:
       - ${PWD}/.env.celestia-lc
     command: /bin/sh -c '/scripts/init.sh && /scripts/start.sh'
