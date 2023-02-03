@@ -2,7 +2,7 @@
 
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 echo $NAMESPACE_ID
-DA_BLOCK_HEIGHT=$(curl $CELESTIA_LC_NODE_ADDR/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl $NODE_ADDR/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
 
 wordled start \
