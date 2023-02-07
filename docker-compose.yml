@@ -4,13 +4,13 @@ services:
   celestia-lc:
     image: celestia-node
     volumes:
-      - ${KEY_PATH}/celestia-lc/:/root/${NODE_STORE}/keys:ro
+      - ${KEY_PATH}/celestia-lc/:${NODE_STORE}/keys:ro
       - ${PWD}/scripts/celestia/:/scripts:ro
     ports:
       - 26657:26657
       - 26659:26659
     env_file:
-      - ${PWD}/.env.celestia-lc
+      - ${PWD}/celestia-lc.env
     command: /bin/sh -c '/scripts/init.sh && /scripts/start.sh'
   wordle:
     image: wordle-rollmint
@@ -18,7 +18,7 @@ services:
       - ${KEY_PATH}/wordle/:/keys:ro
       - ${PWD}/scripts/wordle/:/scripts/:ro
     env_file:
-      - ${PWD}/.env.wordle
+      - ${PWD}/wordle.env
     ports:
       - 26559:26559
     command: /bin/sh -c '/scripts/init.sh && /scripts/genesis.sh && /scripts/start.sh'
